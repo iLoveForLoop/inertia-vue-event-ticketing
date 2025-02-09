@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Application;
@@ -27,10 +28,10 @@ Route::get('/test', function (){
     ]);
 })->middleware('is_admin');
 
-Route::get('/admin', function (){
-    $qrcode = QrCode::format('svg')->size(50)->generate('jeferson bayking')->toHtml();
-    return inertia('Admin/Dashboard', ['qr' => $qrcode]);
-})->middleware('is_admin');
+Route::get('/admin', [AdminController::class, 'index'])->middleware(AdminMiddleware::class);
+Route::get('/admin/users', [AdminController::class, 'users'])->middleware(AdminMiddleware::class)->name('admin-users');
+Route::get('/admin/events', [AdminController::class, 'events'])->middleware(AdminMiddleware::class)->name('admin-events');
+Route::get('/admin/tickets', [AdminController::class, 'tickets'])->middleware(AdminMiddleware::class)->name('admin-tickets');
 
 
 Route::get('/dashboard', function () {

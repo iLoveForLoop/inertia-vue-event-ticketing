@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Fonts */
+.poppins {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.lobster {
+    font-family: "Lobster", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+  }
+
+.admin-theme {
+    background-color: #929798;
+}
+
