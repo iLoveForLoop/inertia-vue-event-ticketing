@@ -26,9 +26,10 @@ Route::get('/test', function (){
     return Inertia::render('Test', [
         'events' => $events
     ]);
-})->middleware('is_admin');
+});
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware(AdminMiddleware::class);
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['role:admin']);
+
 Route::get('/admin/users', [AdminController::class, 'users'])->middleware(AdminMiddleware::class)->name('admin-users');
 Route::get('/admin/events', [AdminController::class, 'events'])->middleware(AdminMiddleware::class)->name('admin-events');
 Route::get('/admin/tickets', [AdminController::class, 'tickets'])->middleware(AdminMiddleware::class)->name('admin-tickets');
